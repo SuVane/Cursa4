@@ -50,4 +50,18 @@ class Bird(pygame.sprite.Sprite):
         self.vel = 0  #настройка скорости полёта птицы
         self.clicked = False
 
-        
+    def update(self):
+
+        if flying == True:
+            self.vel += 0.2     #полет птицы
+            if self.vel > 30:
+                self.vel = 0
+            if self.rect.bottom < 420:
+                self.rect.y += int(self.vel)
+
+        if game_over == False:
+            if pygame.mouse.get_pressed()[0] == 1 and self.clicked == False:    #настройка прыжка
+                self.clicked = True
+                self.vel = -5
+            if pygame.mouse.get_pressed()[0] == 0:
+                self.clicked = False
