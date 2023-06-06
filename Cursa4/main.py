@@ -33,3 +33,21 @@ bg = pygame.transform.scale(bg, (460, 420))
 ground_img = pygame.image.load('E:/Projects/mypj/Новая папка/img/ground.png')
 ground_img = pygame.transform.scale(ground_img, (480, 80))
 button_img = pygame.image.load('E:/Projects/mypj/Новая папка/img/restart.png')
+
+class Bird(pygame.sprite.Sprite):
+    def __init__(self, x, y):
+        pygame.sprite.Sprite.__init__(self)
+        self.images = []
+        self.index = 0
+        self.counter = 0
+        for num in range(1, 4):  # цикл чтобы птица летала а не была статичной
+            img = pygame.image.load(f'E:/Projects/mypj/Новая папка/img/bird{num}.png')
+            img = pygame.transform.scale(img, (35, 25))
+            self.images.append(img)
+        self.image = self.images[self.index]
+        self.rect = self.image.get_rect()
+        self.rect.center = [x, y]       #центрую изображение
+        self.vel = 0  #настройка скорости полёта птицы
+        self.clicked = False
+
+        
